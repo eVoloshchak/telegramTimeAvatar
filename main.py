@@ -1,6 +1,7 @@
 from telethon import TelegramClient, sync
 from config import *
 from telethon.tl.functions.photos import UploadProfilePhotoRequest, DeletePhotosRequest
+from telethon.tl.functions.account import UpdateProfileRequest
 from datetime import datetime
 from utils import *
 import time
@@ -13,6 +14,11 @@ prev_update_time = ""
 
 while True:
     if time_has_changed(prev_update_time):
+        if addTimeToName:
+            client(UpdateProfileRequest(
+                first_name = f"Eugene ({prev_update_time})",
+                last_name = 'Voloshchak'
+            ))
         prev_update_time = convert_time_to_string(datetime.now())
         photos = client.get_profile_photos('me')
         file = client.upload_file(f"{images_dir}/{prev_update_time.replace(':', '-')}.jpg")
