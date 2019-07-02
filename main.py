@@ -16,8 +16,7 @@ while True:
     if time_has_changed(prev_update_time):
         if addTimeToName:
             client(UpdateProfileRequest(
-                first_name = f"Eugene ({prev_update_time})",
-                last_name = 'Voloshchak'
+                first_name = f"Eugene ({prev_update_time})"
             ))
         prev_update_time = convert_time_to_string(datetime.now())
         photos = client.get_profile_photos('me')
